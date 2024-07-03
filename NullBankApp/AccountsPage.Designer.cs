@@ -287,7 +287,7 @@
 			// 
 			countryCB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
 			countryCB.FormattingEnabled = true;
-			countryCB.Items.AddRange(new object[] { "Turkiye", "United States", "", "Canada", "", "United Kingdom", "", "Germany", "", "France", "", "China", "", "India", "", "Japan", "", "Australia", "", "Brazil", "", "Mexico", "", "Russia", "", "South Korea", "", "Italy", "", "Spain", "", "Netherlands", "", "Switzerland", "", "Sweden", "", "South Africa", "", "New Zealand", "", "Other" });
+			countryCB.Items.AddRange(new object[] { "Turkiye", "United States", "Canada", "United Kingdom", "Germany", "France", "China", "India", "Japan", "Australia", "Brazil", "Mexico", "Russia", "South Korea", "Italy", "Spain", "Netherlands", "Switzerland", "Sweden", "South Africa", "New Zealand", "Other" });
 			countryCB.Location = new Point(973, 131);
 			countryCB.Name = "countryCB";
 			countryCB.Size = new Size(164, 42);
