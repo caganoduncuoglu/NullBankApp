@@ -41,6 +41,8 @@
 			label5 = new Label();
 			label6 = new Label();
 			button4 = new Button();
+			label3 = new Label();
+			investmentsBtn = new Button();
 			panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
 			SuspendLayout();
@@ -69,7 +71,7 @@
 			// 
 			label1.AutoSize = true;
 			label1.BackColor = Color.Transparent;
-			label1.Font = new Font("Century Gothic", 9F, FontStyle.Italic, GraphicsUnit.Point, 162);
+			label1.Font = new Font("Century Gothic", 9F, FontStyle.Italic, GraphicsUnit.Point);
 			label1.ForeColor = SystemColors.MenuHighlight;
 			label1.Location = new Point(591, 67);
 			label1.Name = "label1";
@@ -83,7 +85,7 @@
 			Label.Anchor = AnchorStyles.None;
 			Label.AutoSize = true;
 			Label.BackColor = Color.Transparent;
-			Label.Font = new Font("Century", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+			Label.Font = new Font("Century", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
 			Label.ForeColor = SystemColors.MenuHighlight;
 			Label.Location = new Point(362, 26);
 			Label.Name = "Label";
@@ -97,9 +99,9 @@
 			label2.Anchor = AnchorStyles.None;
 			label2.AutoSize = true;
 			label2.BackColor = Color.Transparent;
-			label2.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label2.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			label2.ForeColor = SystemColors.MenuHighlight;
-			label2.Location = new Point(362, 168);
+			label2.Location = new Point(361, 144);
 			label2.Name = "label2";
 			label2.Size = new Size(95, 23);
 			label2.TabIndex = 10;
@@ -111,9 +113,9 @@
 			userNameLabel.Anchor = AnchorStyles.None;
 			userNameLabel.AutoSize = true;
 			userNameLabel.BackColor = Color.Transparent;
-			userNameLabel.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			userNameLabel.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			userNameLabel.ForeColor = SystemColors.MenuHighlight;
-			userNameLabel.Location = new Point(458, 168);
+			userNameLabel.Location = new Point(457, 144);
 			userNameLabel.Name = "userNameLabel";
 			userNameLabel.Size = new Size(52, 23);
 			userNameLabel.TabIndex = 11;
@@ -127,7 +129,7 @@
 			accountsButton.BackgroundImageLayout = ImageLayout.Zoom;
 			accountsButton.FlatAppearance.BorderSize = 0;
 			accountsButton.FlatStyle = FlatStyle.Flat;
-			accountsButton.Location = new Point(362, 244);
+			accountsButton.Location = new Point(362, 202);
 			accountsButton.Name = "accountsButton";
 			accountsButton.Size = new Size(80, 80);
 			accountsButton.TabIndex = 12;
@@ -141,7 +143,7 @@
 			transactionButton.BackgroundImageLayout = ImageLayout.Zoom;
 			transactionButton.FlatAppearance.BorderSize = 0;
 			transactionButton.FlatStyle = FlatStyle.Flat;
-			transactionButton.Location = new Point(510, 244);
+			transactionButton.Location = new Point(512, 202);
 			transactionButton.Name = "transactionButton";
 			transactionButton.Size = new Size(80, 80);
 			transactionButton.TabIndex = 13;
@@ -155,7 +157,7 @@
 			settingsButton.BackgroundImageLayout = ImageLayout.Zoom;
 			settingsButton.FlatAppearance.BorderSize = 0;
 			settingsButton.FlatStyle = FlatStyle.Flat;
-			settingsButton.Location = new Point(651, 244);
+			settingsButton.Location = new Point(660, 336);
 			settingsButton.Name = "settingsButton";
 			settingsButton.Size = new Size(80, 80);
 			settingsButton.TabIndex = 14;
@@ -167,9 +169,9 @@
 			label4.Anchor = AnchorStyles.None;
 			label4.AutoSize = true;
 			label4.BackColor = Color.Transparent;
-			label4.Font = new Font("Century", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label4.Font = new Font("Century", 12.75F, FontStyle.Regular, GraphicsUnit.Point);
 			label4.ForeColor = SystemColors.MenuHighlight;
-			label4.Location = new Point(362, 327);
+			label4.Location = new Point(362, 285);
 			label4.Name = "label4";
 			label4.Size = new Size(82, 21);
 			label4.TabIndex = 15;
@@ -181,9 +183,9 @@
 			label5.Anchor = AnchorStyles.None;
 			label5.AutoSize = true;
 			label5.BackColor = Color.Transparent;
-			label5.Font = new Font("Century", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label5.Font = new Font("Century", 12.75F, FontStyle.Regular, GraphicsUnit.Point);
 			label5.ForeColor = SystemColors.MenuHighlight;
-			label5.Location = new Point(498, 327);
+			label5.Location = new Point(500, 285);
 			label5.Name = "label5";
 			label5.Size = new Size(104, 21);
 			label5.TabIndex = 16;
@@ -195,9 +197,9 @@
 			label6.Anchor = AnchorStyles.None;
 			label6.AutoSize = true;
 			label6.BackColor = Color.Transparent;
-			label6.Font = new Font("Century", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label6.Font = new Font("Century", 12.75F, FontStyle.Regular, GraphicsUnit.Point);
 			label6.ForeColor = SystemColors.MenuHighlight;
-			label6.Location = new Point(655, 327);
+			label6.Location = new Point(664, 419);
 			label6.Name = "label6";
 			label6.Size = new Size(76, 21);
 			label6.TabIndex = 17;
@@ -220,11 +222,41 @@
 			button4.UseVisualStyleBackColor = false;
 			button4.Click += button4_Click;
 			// 
+			// label3
+			// 
+			label3.Anchor = AnchorStyles.None;
+			label3.AutoSize = true;
+			label3.BackColor = Color.Transparent;
+			label3.Font = new Font("Century", 12.75F, FontStyle.Regular, GraphicsUnit.Point);
+			label3.ForeColor = SystemColors.MenuHighlight;
+			label3.Location = new Point(648, 285);
+			label3.Name = "label3";
+			label3.Size = new Size(109, 21);
+			label3.TabIndex = 20;
+			label3.Text = "Investments";
+			label3.TextAlign = ContentAlignment.MiddleCenter;
+			// 
+			// investmentsBtn
+			// 
+			investmentsBtn.BackColor = Color.Transparent;
+			investmentsBtn.BackgroundImage = Properties.Resources.Null_Bank__12__removebg_preview;
+			investmentsBtn.BackgroundImageLayout = ImageLayout.Zoom;
+			investmentsBtn.FlatAppearance.BorderSize = 0;
+			investmentsBtn.FlatStyle = FlatStyle.Flat;
+			investmentsBtn.Location = new Point(660, 202);
+			investmentsBtn.Name = "investmentsBtn";
+			investmentsBtn.Size = new Size(80, 80);
+			investmentsBtn.TabIndex = 19;
+			investmentsBtn.UseVisualStyleBackColor = false;
+			investmentsBtn.Click += investmentsBtn_Click;
+			// 
 			// MainMenu
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(800, 450);
+			Controls.Add(label3);
+			Controls.Add(investmentsBtn);
 			Controls.Add(button4);
 			Controls.Add(label6);
 			Controls.Add(label5);
@@ -263,5 +295,7 @@
 		private Label label5;
 		private Label label6;
 		private Button button4;
+		private Label label3;
+		private Button investmentsBtn;
 	}
 }

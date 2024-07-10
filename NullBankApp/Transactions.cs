@@ -319,5 +319,12 @@ namespace NullBankApp
 				transferAmountTB.Text = "";
 			}
 		}
+
+		private void investmentsBtn_Click(object sender, EventArgs e)
+		{
+			Investments investments = new Investments();
+			investments.Show();
+			this.Hide();
+		}
 	}
 }

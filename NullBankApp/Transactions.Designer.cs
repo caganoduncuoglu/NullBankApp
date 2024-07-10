@@ -63,6 +63,7 @@
 			depositAmountTB = new TextBox();
 			label11 = new Label();
 			accNumDepTB = new TextBox();
+			investmentsBtn = new Button();
 			panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
 			panel2.SuspendLayout();
@@ -74,6 +75,7 @@
 			// panel1
 			// 
 			panel1.BackColor = SystemColors.MenuHighlight;
+			panel1.Controls.Add(investmentsBtn);
 			panel1.Controls.Add(pictureBox1);
 			panel1.Controls.Add(transactionsButton);
 			panel1.Controls.Add(accountsButton);
@@ -128,7 +130,7 @@
 			label2.Anchor = AnchorStyles.None;
 			label2.AutoSize = true;
 			label2.BackColor = Color.Transparent;
-			label2.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label2.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			label2.ForeColor = SystemColors.MenuHighlight;
 			label2.Location = new Point(12, 37);
 			label2.Name = "label2";
@@ -139,7 +141,7 @@
 			// 
 			// checkBalanceTB
 			// 
-			checkBalanceTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			checkBalanceTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
 			checkBalanceTB.Location = new Point(12, 63);
 			checkBalanceTB.Name = "checkBalanceTB";
 			checkBalanceTB.Size = new Size(208, 38);
@@ -150,7 +152,7 @@
 			Label.Anchor = AnchorStyles.None;
 			Label.AutoSize = true;
 			Label.BackColor = Color.Transparent;
-			Label.Font = new Font("Century", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+			Label.Font = new Font("Century", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
 			Label.ForeColor = SystemColors.MenuHighlight;
 			Label.Location = new Point(567, 12);
 			Label.Name = "Label";
@@ -209,7 +211,7 @@
 			balanceLabel.Anchor = AnchorStyles.None;
 			balanceLabel.AutoSize = true;
 			balanceLabel.BackColor = Color.Transparent;
-			balanceLabel.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			balanceLabel.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			balanceLabel.ForeColor = SystemColors.MenuHighlight;
 			balanceLabel.Location = new Point(12, 132);
 			balanceLabel.Name = "balanceLabel";
@@ -225,7 +227,7 @@
 			balanceButton.Cursor = Cursors.Hand;
 			balanceButton.FlatAppearance.BorderSize = 0;
 			balanceButton.FlatStyle = FlatStyle.Flat;
-			balanceButton.Font = new Font("Franklin Gothic Book", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			balanceButton.Font = new Font("Franklin Gothic Book", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
 			balanceButton.ForeColor = Color.White;
 			balanceButton.Location = new Point(226, 63);
 			balanceButton.Name = "balanceButton";
@@ -260,7 +262,7 @@
 			transferButton.Cursor = Cursors.Hand;
 			transferButton.FlatAppearance.BorderSize = 0;
 			transferButton.FlatStyle = FlatStyle.Flat;
-			transferButton.Font = new Font("Franklin Gothic Book", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			transferButton.Font = new Font("Franklin Gothic Book", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
 			transferButton.ForeColor = Color.White;
 			transferButton.Location = new Point(322, 132);
 			transferButton.Name = "transferButton";
@@ -275,7 +277,7 @@
 			label5.Anchor = AnchorStyles.None;
 			label5.AutoSize = true;
 			label5.BackColor = Color.Transparent;
-			label5.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label5.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			label5.ForeColor = SystemColors.MenuHighlight;
 			label5.Location = new Point(322, 37);
 			label5.Name = "label5";
@@ -286,7 +288,7 @@
 			// 
 			// transferAmountTB
 			// 
-			transferAmountTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			transferAmountTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
 			transferAmountTB.Location = new Point(322, 63);
 			transferAmountTB.Name = "transferAmountTB";
 			transferAmountTB.Size = new Size(208, 38);
@@ -297,7 +299,7 @@
 			toText.Anchor = AnchorStyles.None;
 			toText.AutoSize = true;
 			toText.BackColor = Color.Transparent;
-			toText.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			toText.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			toText.ForeColor = SystemColors.MenuHighlight;
 			toText.Location = new Point(16, 106);
 			toText.Name = "toText";
@@ -308,7 +310,7 @@
 			// 
 			// toTB
 			// 
-			toTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			toTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
 			toTB.Location = new Point(16, 132);
 			toTB.Name = "toTB";
 			toTB.Size = new Size(208, 38);
@@ -319,7 +321,7 @@
 			label3.Anchor = AnchorStyles.None;
 			label3.AutoSize = true;
 			label3.BackColor = Color.Transparent;
-			label3.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label3.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			label3.ForeColor = SystemColors.MenuHighlight;
 			label3.Location = new Point(16, 37);
 			label3.Name = "label3";
@@ -333,7 +335,7 @@
 			label1.Anchor = AnchorStyles.None;
 			label1.AutoSize = true;
 			label1.BackColor = Color.Transparent;
-			label1.Font = new Font("Century", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
+			label1.Font = new Font("Century", 18F, FontStyle.Bold, GraphicsUnit.Point);
 			label1.ForeColor = SystemColors.MenuHighlight;
 			label1.Location = new Point(-1, 0);
 			label1.Name = "label1";
@@ -344,7 +346,7 @@
 			// 
 			// fromTB
 			// 
-			fromTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			fromTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
 			fromTB.Location = new Point(16, 63);
 			fromTB.Name = "fromTB";
 			fromTB.Size = new Size(208, 38);
@@ -373,7 +375,7 @@
 			withdrawButton.Cursor = Cursors.Hand;
 			withdrawButton.FlatAppearance.BorderSize = 0;
 			withdrawButton.FlatStyle = FlatStyle.Flat;
-			withdrawButton.Font = new Font("Franklin Gothic Book", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			withdrawButton.Font = new Font("Franklin Gothic Book", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
 			withdrawButton.ForeColor = Color.White;
 			withdrawButton.Location = new Point(369, 154);
 			withdrawButton.Name = "withdrawButton";
@@ -388,7 +390,7 @@
 			label9.Anchor = AnchorStyles.None;
 			label9.AutoSize = true;
 			label9.BackColor = Color.Transparent;
-			label9.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label9.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			label9.ForeColor = SystemColors.MenuHighlight;
 			label9.Location = new Point(265, 69);
 			label9.Name = "label9";
@@ -402,7 +404,7 @@
 			label8.Anchor = AnchorStyles.None;
 			label8.AutoSize = true;
 			label8.BackColor = Color.Transparent;
-			label8.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label8.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			label8.ForeColor = SystemColors.MenuHighlight;
 			label8.Location = new Point(12, 69);
 			label8.Name = "label8";
@@ -413,7 +415,7 @@
 			// 
 			// withdrawAmountTB
 			// 
-			withdrawAmountTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			withdrawAmountTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
 			withdrawAmountTB.Location = new Point(265, 95);
 			withdrawAmountTB.Name = "withdrawAmountTB";
 			withdrawAmountTB.Size = new Size(208, 38);
@@ -424,7 +426,7 @@
 			label6.Anchor = AnchorStyles.None;
 			label6.AutoSize = true;
 			label6.BackColor = Color.Transparent;
-			label6.Font = new Font("Century", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
+			label6.Font = new Font("Century", 18F, FontStyle.Bold, GraphicsUnit.Point);
 			label6.ForeColor = SystemColors.MenuHighlight;
 			label6.Location = new Point(-1, 0);
 			label6.Name = "label6";
@@ -435,7 +437,7 @@
 			// 
 			// accNumWitTB
 			// 
-			accNumWitTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			accNumWitTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
 			accNumWitTB.Location = new Point(12, 95);
 			accNumWitTB.Name = "accNumWitTB";
 			accNumWitTB.Size = new Size(208, 38);
@@ -464,7 +466,7 @@
 			depositButton.Cursor = Cursors.Hand;
 			depositButton.FlatAppearance.BorderSize = 0;
 			depositButton.FlatStyle = FlatStyle.Flat;
-			depositButton.Font = new Font("Franklin Gothic Book", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			depositButton.Font = new Font("Franklin Gothic Book", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
 			depositButton.ForeColor = Color.White;
 			depositButton.Location = new Point(368, 154);
 			depositButton.Name = "depositButton";
@@ -479,7 +481,7 @@
 			label7.Anchor = AnchorStyles.None;
 			label7.AutoSize = true;
 			label7.BackColor = Color.Transparent;
-			label7.Font = new Font("Century", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
+			label7.Font = new Font("Century", 18F, FontStyle.Bold, GraphicsUnit.Point);
 			label7.ForeColor = SystemColors.MenuHighlight;
 			label7.Location = new Point(-1, -1);
 			label7.Name = "label7";
@@ -493,7 +495,7 @@
 			label10.Anchor = AnchorStyles.None;
 			label10.AutoSize = true;
 			label10.BackColor = Color.Transparent;
-			label10.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label10.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			label10.ForeColor = SystemColors.MenuHighlight;
 			label10.Location = new Point(264, 69);
 			label10.Name = "label10";
@@ -504,7 +506,7 @@
 			// 
 			// depositAmountTB
 			// 
-			depositAmountTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			depositAmountTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
 			depositAmountTB.Location = new Point(264, 95);
 			depositAmountTB.Name = "depositAmountTB";
 			depositAmountTB.Size = new Size(208, 38);
@@ -515,7 +517,7 @@
 			label11.Anchor = AnchorStyles.None;
 			label11.AutoSize = true;
 			label11.BackColor = Color.Transparent;
-			label11.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label11.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			label11.ForeColor = SystemColors.MenuHighlight;
 			label11.Location = new Point(11, 69);
 			label11.Name = "label11";
@@ -526,11 +528,26 @@
 			// 
 			// accNumDepTB
 			// 
-			accNumDepTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			accNumDepTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
 			accNumDepTB.Location = new Point(11, 95);
 			accNumDepTB.Name = "accNumDepTB";
 			accNumDepTB.Size = new Size(208, 38);
 			accNumDepTB.TabIndex = 60;
+			// 
+			// investmentsBtn
+			// 
+			investmentsBtn.BackColor = Color.Transparent;
+			investmentsBtn.BackgroundImage = Properties.Resources.Null_Bank__13__removebg_preview;
+			investmentsBtn.BackgroundImageLayout = ImageLayout.Zoom;
+			investmentsBtn.Cursor = Cursors.Hand;
+			investmentsBtn.FlatAppearance.BorderSize = 0;
+			investmentsBtn.FlatStyle = FlatStyle.Flat;
+			investmentsBtn.Location = new Point(0, 249);
+			investmentsBtn.Name = "investmentsBtn";
+			investmentsBtn.Size = new Size(84, 75);
+			investmentsBtn.TabIndex = 41;
+			investmentsBtn.UseVisualStyleBackColor = false;
+			investmentsBtn.Click += investmentsBtn_Click;
 			// 
 			// Transactions
 			// 
@@ -600,5 +617,6 @@
 		private TextBox depositAmountTB;
 		private Label label11;
 		private TextBox accNumDepTB;
+		private Button investmentsBtn;
 	}
 }

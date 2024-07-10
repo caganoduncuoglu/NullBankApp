@@ -63,13 +63,13 @@ namespace NullBankApp
 			acPhoneTB.Text = "";
 			acAddressTB.Text = "";
 			acIncomeTB.Text = "";
-			educationCB.SelectedIndex = -1;
+			typeCB.SelectedIndex = -1;
 			countryCB.SelectedIndex = -1;
 		}
 		private void submitButton_Click(object sender, EventArgs e)
 		{
 			if (acNameTB.Text == "" || acPhoneTB.Text == "" || acAddressTB.Text == ""
-				|| acIncomeTB.Text == "" || educationCB.SelectedIndex == -1 || countryCB.SelectedIndex == -1)
+				|| acIncomeTB.Text == "" || typeCB.SelectedIndex == -1 || countryCB.SelectedIndex == -1)
 			{
 				MessageBox.Show("Please fill in all the information");
 			}
@@ -78,16 +78,44 @@ namespace NullBankApp
 				try
 				{
 					sqlConnection.Open();
-					SqlCommand cmd = new SqlCommand("insert into AccountTbl(ACName,ACPhone,ACAddress,ACEduc,ACCountry,ACBal,ACIncome)values(@AN,@AP,@AA,@AE,@AC,@AB,@AI)", sqlConnection);
+					string insertAccountQuery = "INSERT INTO AccountTbl(ACName,ACPhone,ACAddress,ACType,ACCountry,ACBal,ACIncome) " +
+									   "VALUES(@AN,@AP,@AA,@AT,@AC,@AB,@AI); SELECT SCOPE_IDENTITY();";
+					SqlCommand cmd = new SqlCommand(insertAccountQuery, sqlConnection);
 					cmd.Parameters.AddWithValue("@AN", acNameTB.Text);
 					cmd.Parameters.AddWithValue("@AP", acPhoneTB.Text);
 					cmd.Parameters.AddWithValue("@AA", acAddressTB.Text);
-					cmd.Parameters.AddWithValue("@AE", educationCB.SelectedItem.ToString());
+					cmd.Parameters.AddWithValue("@AT", typeCB.SelectedItem.ToString());
 					cmd.Parameters.AddWithValue("@AC", countryCB.SelectedItem.ToString());
 					cmd.Parameters.AddWithValue("@AB", 0);
 					cmd.Parameters.AddWithValue("@AI", acIncomeTB.Text);
-					cmd.ExecuteNonQuery();
-					MessageBox.Show("Account Created Successfully");
+					//cmd.ExecuteNonQuery();
+
+					// Execute and get the inserted account's ID
+					object result = cmd.ExecuteScalar();
+					if (result != null)
+					{
+						int accountId = Convert.ToInt32(result);
+
+						// Check if the account type is investment
+						if (typeCB.SelectedIndex == 2)
+						{
+							// Insert into InvestmentAccounts
+							SqlCommand investmentCmd = new SqlCommand("INSERT INTO InvestmentAccountsTbl(ACNum,IGold,IUSD,IEUR) VALUES(@ACNum,@Gold,@USD,@EUR)", sqlConnection);
+							investmentCmd.Parameters.AddWithValue("@ACNum", accountId);
+							investmentCmd.Parameters.AddWithValue("@Gold", 0.0);  // Initial gold balance
+							investmentCmd.Parameters.AddWithValue("@USD", 0.0);   // Initial USD balance
+							investmentCmd.Parameters.AddWithValue("@EUR", 0.0);   // Initial EUR balance
+
+							investmentCmd.ExecuteNonQuery();
+						}
+
+						MessageBox.Show("Account Created Successfully");
+					}
+					else
+					{
+						MessageBox.Show("Failed to retrieve the account ID after insertion.");
+					}
+
 					sqlConnection.Close();
 					Reset();
 					DisplayAccounts();
@@ -102,7 +130,7 @@ namespace NullBankApp
 		private void editButton_Click(object sender, EventArgs e)
 		{
 			if (acNameTB.Text == "" || acPhoneTB.Text == "" || acAddressTB.Text == ""
-				|| acIncomeTB.Text == "" || educationCB.SelectedIndex == -1 || countryCB.SelectedIndex == -1)
+				|| acIncomeTB.Text == "" || typeCB.SelectedIndex == -1 || countryCB.SelectedIndex == -1)
 			{
 				MessageBox.Show("Please select an account!");
 			}
@@ -111,11 +139,11 @@ namespace NullBankApp
 				try
 				{
 					sqlConnection.Open();
-					SqlCommand cmd = new SqlCommand("Update AccountTbl set ACName=@AN,ACPhone=@AP,ACAddress=@AA,ACEduc=@AE,ACCountry=@AC,ACIncome=@AI where ACNum=@ACKey", sqlConnection);
+					SqlCommand cmd = new SqlCommand("Update AccountTbl set ACName=@AN,ACPhone=@AP,ACAddress=@AA,ACType=@AE,ACCountry=@AC,ACIncome=@AI where ACNum=@ACKey", sqlConnection);
 					cmd.Parameters.AddWithValue("@AN", acNameTB.Text);
 					cmd.Parameters.AddWithValue("@AP", acPhoneTB.Text);
 					cmd.Parameters.AddWithValue("@AA", acAddressTB.Text);
-					cmd.Parameters.AddWithValue("@AE", educationCB.SelectedItem.ToString());
+					cmd.Parameters.AddWithValue("@AT", typeCB.SelectedItem.ToString());
 					cmd.Parameters.AddWithValue("@AC", countryCB.SelectedItem.ToString());
 					cmd.Parameters.AddWithValue("ACKey", Key);
 					cmd.Parameters.AddWithValue("@AI", acIncomeTB.Text);
@@ -163,7 +191,7 @@ namespace NullBankApp
 			acNameTB.Text = AccountsDGV.SelectedRows[0].Cells[1].Value.ToString();
 			acPhoneTB.Text = AccountsDGV.SelectedRows[0].Cells[2].Value.ToString();
 			acAddressTB.Text = AccountsDGV.SelectedRows[0].Cells[3].Value.ToString();
-			educationCB.SelectedItem = AccountsDGV.SelectedRows[0].Cells[4].Value.ToString();
+			typeCB.SelectedItem = AccountsDGV.SelectedRows[0].Cells[4].Value.ToString();
 			countryCB.SelectedItem = AccountsDGV.SelectedRows[0].Cells[5].Value.ToString();
 			acIncomeTB.Text = AccountsDGV.SelectedRows[0].Cells[7].Value.ToString();
 			if (acNameTB.Text == "")
@@ -174,6 +202,13 @@ namespace NullBankApp
 			{
 				Key = Convert.ToInt32(AccountsDGV.SelectedRows[0].Cells[0].Value.ToString());
 			}
+		}
+
+		private void investmentsBtn_Click(object sender, EventArgs e)
+		{
+			Investments investments = new Investments();
+			investments.Show();
+			this.Hide();
 		}
 	}
 }

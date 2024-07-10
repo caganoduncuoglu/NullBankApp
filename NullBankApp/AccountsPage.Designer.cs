@@ -28,9 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-			DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-			DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+			DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+			DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+			DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
 			panel1 = new Panel();
 			pictureBox1 = new PictureBox();
 			transactionsButton = new Button();
@@ -46,7 +46,7 @@
 			acAddressTB = new TextBox();
 			label4 = new Label();
 			acIncomeTB = new TextBox();
-			educationCB = new ComboBox();
+			typeCB = new ComboBox();
 			label5 = new Label();
 			label6 = new Label();
 			countryCB = new ComboBox();
@@ -54,6 +54,7 @@
 			AccountsDGV = new DataGridView();
 			editButton = new Button();
 			deleteButton = new Button();
+			investmentsBtn = new Button();
 			panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
 			((System.ComponentModel.ISupportInitialize)AccountsDGV).BeginInit();
@@ -62,6 +63,7 @@
 			// panel1
 			// 
 			panel1.BackColor = SystemColors.MenuHighlight;
+			panel1.Controls.Add(investmentsBtn);
 			panel1.Controls.Add(pictureBox1);
 			panel1.Controls.Add(transactionsButton);
 			panel1.Controls.Add(accountsButton);
@@ -147,7 +149,7 @@
 			Label.Anchor = AnchorStyles.None;
 			Label.AutoSize = true;
 			Label.BackColor = Color.Transparent;
-			Label.Font = new Font("Century", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+			Label.Font = new Font("Century", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
 			Label.ForeColor = SystemColors.MenuHighlight;
 			Label.Location = new Point(509, 12);
 			Label.Name = "Label";
@@ -161,7 +163,7 @@
 			label2.Anchor = AnchorStyles.None;
 			label2.AutoSize = true;
 			label2.BackColor = Color.Transparent;
-			label2.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label2.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			label2.ForeColor = SystemColors.MenuHighlight;
 			label2.Location = new Point(184, 105);
 			label2.Name = "label2";
@@ -172,7 +174,7 @@
 			// 
 			// acNameTB
 			// 
-			acNameTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			acNameTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
 			acNameTB.Location = new Point(184, 131);
 			acNameTB.Name = "acNameTB";
 			acNameTB.Size = new Size(218, 38);
@@ -183,7 +185,7 @@
 			label1.Anchor = AnchorStyles.None;
 			label1.AutoSize = true;
 			label1.BackColor = Color.Transparent;
-			label1.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label1.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			label1.ForeColor = SystemColors.MenuHighlight;
 			label1.Location = new Point(446, 105);
 			label1.Name = "label1";
@@ -194,7 +196,7 @@
 			// 
 			// acPhoneTB
 			// 
-			acPhoneTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			acPhoneTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
 			acPhoneTB.Location = new Point(446, 131);
 			acPhoneTB.Name = "acPhoneTB";
 			acPhoneTB.Size = new Size(218, 38);
@@ -205,7 +207,7 @@
 			label3.Anchor = AnchorStyles.None;
 			label3.AutoSize = true;
 			label3.BackColor = Color.Transparent;
-			label3.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label3.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			label3.ForeColor = SystemColors.MenuHighlight;
 			label3.Location = new Point(704, 105);
 			label3.Name = "label3";
@@ -216,7 +218,7 @@
 			// 
 			// acAddressTB
 			// 
-			acAddressTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			acAddressTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
 			acAddressTB.Location = new Point(704, 131);
 			acAddressTB.Multiline = true;
 			acAddressTB.Name = "acAddressTB";
@@ -228,7 +230,7 @@
 			label4.Anchor = AnchorStyles.None;
 			label4.AutoSize = true;
 			label4.BackColor = Color.Transparent;
-			label4.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label4.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			label4.ForeColor = SystemColors.MenuHighlight;
 			label4.Location = new Point(446, 186);
 			label4.Name = "label4";
@@ -239,34 +241,34 @@
 			// 
 			// acIncomeTB
 			// 
-			acIncomeTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			acIncomeTB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
 			acIncomeTB.Location = new Point(446, 212);
 			acIncomeTB.Name = "acIncomeTB";
 			acIncomeTB.Size = new Size(218, 38);
 			acIncomeTB.TabIndex = 27;
 			// 
-			// educationCB
+			// typeCB
 			// 
-			educationCB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-			educationCB.FormattingEnabled = true;
-			educationCB.Items.AddRange(new object[] { "No Formal Education", "High School Diploma or Equivalent", "Associate's Degree", "Bachelor's Degree", "Master's Degree", "Doctorate (Ph.D.)", "Professional Certification", "Some College, No Degree", "Technical Diploma", "GED", "Other" });
-			educationCB.Location = new Point(184, 208);
-			educationCB.Name = "educationCB";
-			educationCB.Size = new Size(218, 42);
-			educationCB.TabIndex = 29;
+			typeCB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
+			typeCB.FormattingEnabled = true;
+			typeCB.Items.AddRange(new object[] { "Checking", "Deposit", "Investment" });
+			typeCB.Location = new Point(184, 208);
+			typeCB.Name = "typeCB";
+			typeCB.Size = new Size(218, 42);
+			typeCB.TabIndex = 29;
 			// 
 			// label5
 			// 
 			label5.Anchor = AnchorStyles.None;
 			label5.AutoSize = true;
 			label5.BackColor = Color.Transparent;
-			label5.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label5.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			label5.ForeColor = SystemColors.MenuHighlight;
 			label5.Location = new Point(184, 179);
 			label5.Name = "label5";
-			label5.Size = new Size(101, 23);
+			label5.Size = new Size(54, 23);
 			label5.TabIndex = 30;
-			label5.Text = "Education";
+			label5.Text = "Type";
 			label5.TextAlign = ContentAlignment.MiddleCenter;
 			// 
 			// label6
@@ -274,7 +276,7 @@
 			label6.Anchor = AnchorStyles.None;
 			label6.AutoSize = true;
 			label6.BackColor = Color.Transparent;
-			label6.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			label6.Font = new Font("Century", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			label6.ForeColor = SystemColors.MenuHighlight;
 			label6.Location = new Point(973, 105);
 			label6.Name = "label6";
@@ -285,7 +287,7 @@
 			// 
 			// countryCB
 			// 
-			countryCB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			countryCB.Font = new Font("Franklin Gothic Book", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
 			countryCB.FormattingEnabled = true;
 			countryCB.Items.AddRange(new object[] { "Turkiye", "United States", "Canada", "United Kingdom", "Germany", "France", "China", "India", "Japan", "Australia", "Brazil", "Mexico", "Russia", "South Korea", "Italy", "Spain", "Netherlands", "Switzerland", "Sweden", "South Africa", "New Zealand", "Other" });
 			countryCB.Location = new Point(973, 131);
@@ -300,7 +302,7 @@
 			submitButton.Cursor = Cursors.Hand;
 			submitButton.FlatAppearance.BorderSize = 0;
 			submitButton.FlatStyle = FlatStyle.Flat;
-			submitButton.Font = new Font("Franklin Gothic Book", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			submitButton.Font = new Font("Franklin Gothic Book", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
 			submitButton.ForeColor = Color.White;
 			submitButton.Location = new Point(1143, 131);
 			submitButton.Name = "submitButton";
@@ -314,27 +316,27 @@
 			// 
 			AccountsDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 			AccountsDGV.BackgroundColor = Color.Gainsboro;
-			dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle1.BackColor = SystemColors.Control;
-			dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-			dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-			dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-			dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-			dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-			AccountsDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle4.BackColor = SystemColors.Control;
+			dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+			dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+			dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+			dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+			AccountsDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			AccountsDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = SystemColors.Window;
-			dataGridViewCellStyle2.Font = new Font("Franklin Gothic Book", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
-			dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-			dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-			AccountsDGV.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle5.BackColor = SystemColors.Window;
+			dataGridViewCellStyle5.Font = new Font("Franklin Gothic Book", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+			dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+			dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+			dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+			AccountsDGV.DefaultCellStyle = dataGridViewCellStyle5;
 			AccountsDGV.Location = new Point(145, 309);
 			AccountsDGV.Name = "AccountsDGV";
-			dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-			AccountsDGV.RowsDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+			AccountsDGV.RowsDefaultCellStyle = dataGridViewCellStyle6;
 			AccountsDGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 			AccountsDGV.Size = new Size(1085, 372);
 			AccountsDGV.TabIndex = 34;
@@ -347,7 +349,7 @@
 			editButton.Cursor = Cursors.Hand;
 			editButton.FlatAppearance.BorderSize = 0;
 			editButton.FlatStyle = FlatStyle.Flat;
-			editButton.Font = new Font("Franklin Gothic Book", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			editButton.Font = new Font("Franklin Gothic Book", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
 			editButton.ForeColor = Color.White;
 			editButton.Location = new Point(973, 208);
 			editButton.Name = "editButton";
@@ -364,7 +366,7 @@
 			deleteButton.Cursor = Cursors.Hand;
 			deleteButton.FlatAppearance.BorderSize = 0;
 			deleteButton.FlatStyle = FlatStyle.Flat;
-			deleteButton.Font = new Font("Franklin Gothic Book", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+			deleteButton.Font = new Font("Franklin Gothic Book", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
 			deleteButton.ForeColor = Color.White;
 			deleteButton.Location = new Point(1119, 208);
 			deleteButton.Name = "deleteButton";
@@ -373,6 +375,21 @@
 			deleteButton.Text = "Delete";
 			deleteButton.UseVisualStyleBackColor = false;
 			deleteButton.Click += deleteButton_Click;
+			// 
+			// investmentsBtn
+			// 
+			investmentsBtn.BackColor = Color.Transparent;
+			investmentsBtn.BackgroundImage = Properties.Resources.Null_Bank__13__removebg_preview;
+			investmentsBtn.BackgroundImageLayout = ImageLayout.Zoom;
+			investmentsBtn.Cursor = Cursors.Hand;
+			investmentsBtn.FlatAppearance.BorderSize = 0;
+			investmentsBtn.FlatStyle = FlatStyle.Flat;
+			investmentsBtn.Location = new Point(0, 249);
+			investmentsBtn.Name = "investmentsBtn";
+			investmentsBtn.Size = new Size(84, 75);
+			investmentsBtn.TabIndex = 5;
+			investmentsBtn.UseVisualStyleBackColor = false;
+			investmentsBtn.Click += investmentsBtn_Click;
 			// 
 			// AccountsPage
 			// 
@@ -386,7 +403,7 @@
 			Controls.Add(label6);
 			Controls.Add(countryCB);
 			Controls.Add(label5);
-			Controls.Add(educationCB);
+			Controls.Add(typeCB);
 			Controls.Add(label4);
 			Controls.Add(acIncomeTB);
 			Controls.Add(label3);
@@ -427,7 +444,7 @@
 		private TextBox acAddressTB;
 		private Label label4;
 		private TextBox acIncomeTB;
-		private ComboBox educationCB;
+		private ComboBox typeCB;
 		private Label label5;
 		private Label label6;
 		private ComboBox countryCB;
@@ -435,5 +452,6 @@
 		private DataGridView AccountsDGV;
 		private Button editButton;
 		private Button deleteButton;
+		private Button investmentsBtn;
 	}
 }

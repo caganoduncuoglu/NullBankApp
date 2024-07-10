@@ -32,6 +32,7 @@
 			transactionsButton = new Button();
 			pictureBox1 = new PictureBox();
 			panel1 = new Panel();
+			investmentsBtn = new Button();
 			Label = new Label();
 			backButton = new Button();
 			closeButton = new Button();
@@ -52,6 +53,7 @@
 			label5 = new Label();
 			euroSell = new Label();
 			parrotGradientPanel2 = new ReaLTaiizor.Controls.ParrotGradientPanel();
+			label18 = new Label();
 			label1 = new Label();
 			pieChart1 = new LiveChartsCore.SkiaSharpView.WinForms.PieChart();
 			enterIDTB = new ReaLTaiizor.Controls.DungeonTextBox();
@@ -80,7 +82,7 @@
 			label15 = new Label();
 			sellCB = new ReaLTaiizor.Controls.MetroComboBox();
 			label16 = new Label();
-			label18 = new Label();
+			nameLbl = new Label();
 			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
 			panel1.SuspendLayout();
 			parrotGradientPanel2.SuspendLayout();
@@ -101,6 +103,7 @@
 			accountsButton.Size = new Size(84, 75);
 			accountsButton.TabIndex = 2;
 			accountsButton.UseVisualStyleBackColor = false;
+			accountsButton.Click += accountsButton_Click;
 			// 
 			// transactionsButton
 			// 
@@ -115,6 +118,7 @@
 			transactionsButton.Size = new Size(84, 75);
 			transactionsButton.TabIndex = 3;
 			transactionsButton.UseVisualStyleBackColor = false;
+			transactionsButton.Click += transactionsButton_Click;
 			// 
 			// pictureBox1
 			// 
@@ -131,6 +135,7 @@
 			// panel1
 			// 
 			panel1.BackColor = SystemColors.MenuHighlight;
+			panel1.Controls.Add(investmentsBtn);
 			panel1.Controls.Add(pictureBox1);
 			panel1.Controls.Add(transactionsButton);
 			panel1.Controls.Add(accountsButton);
@@ -138,6 +143,20 @@
 			panel1.Name = "panel1";
 			panel1.Size = new Size(84, 721);
 			panel1.TabIndex = 60;
+			// 
+			// investmentsBtn
+			// 
+			investmentsBtn.BackColor = Color.Transparent;
+			investmentsBtn.BackgroundImage = Properties.Resources.Null_Bank__13__removebg_preview;
+			investmentsBtn.BackgroundImageLayout = ImageLayout.Zoom;
+			investmentsBtn.Cursor = Cursors.Hand;
+			investmentsBtn.FlatAppearance.BorderSize = 0;
+			investmentsBtn.FlatStyle = FlatStyle.Flat;
+			investmentsBtn.Location = new Point(0, 249);
+			investmentsBtn.Name = "investmentsBtn";
+			investmentsBtn.Size = new Size(84, 75);
+			investmentsBtn.TabIndex = 4;
+			investmentsBtn.UseVisualStyleBackColor = false;
 			// 
 			// Label
 			// 
@@ -166,6 +185,7 @@
 			backButton.Size = new Size(30, 30);
 			backButton.TabIndex = 61;
 			backButton.UseVisualStyleBackColor = false;
+			backButton.Click += backButton_Click;
 			// 
 			// closeButton
 			// 
@@ -181,6 +201,7 @@
 			closeButton.Size = new Size(30, 30);
 			closeButton.TabIndex = 62;
 			closeButton.UseVisualStyleBackColor = false;
+			closeButton.Click += closeButton_Click;
 			// 
 			// dateLbl
 			// 
@@ -441,6 +462,20 @@
 			parrotGradientPanel2.TopLeft = Color.SlateBlue;
 			parrotGradientPanel2.TopRight = SystemColors.MenuHighlight;
 			// 
+			// label18
+			// 
+			label18.Anchor = AnchorStyles.None;
+			label18.AutoSize = true;
+			label18.BackColor = Color.Transparent;
+			label18.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+			label18.ForeColor = SystemColors.HighlightText;
+			label18.Location = new Point(46, 53);
+			label18.Name = "label18";
+			label18.Size = new Size(92, 22);
+			label18.TabIndex = 86;
+			label18.Text = "XAU/TRY";
+			label18.TextAlign = ContentAlignment.MiddleCenter;
+			// 
 			// label1
 			// 
 			label1.Anchor = AnchorStyles.None;
@@ -525,6 +560,7 @@
 			checkButton.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 			checkButton.Timer_Effect_1 = 5;
 			checkButton.Timer_RGB = 300;
+			checkButton.Click += checkButton_Click;
 			// 
 			// totalPrice
 			// 
@@ -681,6 +717,7 @@
 			buyButton.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 			buyButton.Timer_Effect_1 = 5;
 			buyButton.Timer_RGB = 300;
+			buyButton.Click += buyButton_Click;
 			// 
 			// buyUnitTB
 			// 
@@ -900,6 +937,7 @@
 			sellButton.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 			sellButton.Timer_Effect_1 = 5;
 			sellButton.Timer_RGB = 300;
+			sellButton.Click += sellButton_Click;
 			// 
 			// sellUnitTB
 			// 
@@ -990,25 +1028,25 @@
 			label16.Text = "Sell";
 			label16.TextAlign = ContentAlignment.MiddleCenter;
 			// 
-			// label18
+			// nameLbl
 			// 
-			label18.Anchor = AnchorStyles.None;
-			label18.AutoSize = true;
-			label18.BackColor = Color.Transparent;
-			label18.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-			label18.ForeColor = SystemColors.HighlightText;
-			label18.Location = new Point(46, 53);
-			label18.Name = "label18";
-			label18.Size = new Size(92, 22);
-			label18.TabIndex = 86;
-			label18.Text = "XAU/TRY";
-			label18.TextAlign = ContentAlignment.MiddleCenter;
+			nameLbl.AutoSize = true;
+			nameLbl.BackColor = Color.Transparent;
+			nameLbl.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+			nameLbl.ForeColor = SystemColors.MenuHighlight;
+			nameLbl.Location = new Point(481, 521);
+			nameLbl.Name = "nameLbl";
+			nameLbl.Size = new Size(46, 22);
+			nameLbl.TabIndex = 90;
+			nameLbl.Text = "NaN";
+			nameLbl.TextAlign = ContentAlignment.MiddleCenter;
 			// 
 			// Investments
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(1280, 720);
+			Controls.Add(nameLbl);
 			Controls.Add(parrotGradientPanel4);
 			Controls.Add(parrotGradientPanel3);
 			Controls.Add(label4);
@@ -1094,5 +1132,7 @@
 		private Label sellID;
 		private Label label20;
 		private Label label18;
+		private Button investmentsBtn;
+		private Label nameLbl;
 	}
 }

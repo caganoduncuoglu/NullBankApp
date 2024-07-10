@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using SkiaSharp;
+using System.Data.SqlClient;
 
 namespace NullBankApp
 {
@@ -18,6 +19,9 @@ namespace NullBankApp
 	{
 		private readonly GoldPriceService _goldPriceService;
 		private readonly CurrencyService _currencyService;
+
+		SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Cagan\Documents\NullBankDB.mdf;Integrated Security=True;Connect Timeout=30");
+
 		public Investments()
 		{
 			InitializeComponent();
@@ -32,15 +36,6 @@ namespace NullBankApp
 			sellUnitTB.TextChanged += SellUnitTB_TextChanged;
 			buyCB.SelectedIndex = 0;
 			sellCB.SelectedIndex = 0;
-
-			pieChart1.Series = new ISeries[]
-{
-	new PieSeries<double> { Values = new double[] { 2 } },
-	new PieSeries<double> { Values = new double[] { 4 } },
-	new PieSeries<double> { Values = new double[] { 1 } },
-	new PieSeries<double> { Values = new double[] { 4 } },
-	new PieSeries<double> { Values = new double[] { 3 } }
-};
 		}
 
 		private void BuyUnitTB_TextChanged(object? sender, EventArgs e)
@@ -95,8 +90,8 @@ namespace NullBankApp
 			{
 				decimal unit = 0;
 				if (buyCB.SelectedIndex == 0) // Gold
-				{ 	
-					 unit = price / Decimal.Parse(buyGoldPrice.Text); 
+				{
+					unit = price / Decimal.Parse(buyGoldPrice.Text);
 				}
 				else if (buyCB.SelectedIndex == 1) // USD
 				{
@@ -168,6 +163,244 @@ namespace NullBankApp
 			}
 		}
 
-		
+		private void checkButton_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				sqlConnection.Open();
+				string query = @"SELECT a.ACBal, a.ACName, i.IGold, i.IUSD, i.IEUR 
+                     FROM AccountTbl a 
+                     JOIN InvestmentAccountsTbl i ON a.ACNum = i.ACNum 
+                     WHERE a.ACNum = '" + enterIDTB.Text + "'";
+				SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+				DataTable dataTable = new DataTable();
+				SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+				sqlDataAdapter.Fill(dataTable);
+				// Prepare the pie chart series
+				double acBal = 0, goldBalance = 0, usdBalance = 0, eurBalance = 0;
+
+				foreach (DataRow dataRow in dataTable.Rows)
+				{
+					acBal = Convert.ToDouble(dataRow["ACBal"]);
+					nameLbl.Text = dataRow["ACName"].ToString();
+					goldBalance = Convert.ToDouble(dataRow["IGold"]);
+					usdBalance = Convert.ToDouble(dataRow["IUSD"]);
+					eurBalance = Convert.ToDouble(dataRow["IEUR"]);
+				}
+
+				// Add the values to the pie chart
+				pieChart1.Series = new ISeries[]
+				{
+					new PieSeries<double> { Values = new double[] { acBal }, Name = "Account Balance (₺)" },
+					new PieSeries<double> { Values = new double[] { goldBalance }, Name = "Gold Balance" },
+					new PieSeries<double> { Values = new double[] { usdBalance }, Name = "USD Balance" },
+					new PieSeries<double> { Values = new double[] { eurBalance }, Name = "EUR Balance" }
+				};
+
+				// Calculate the total balance
+				double totalBalance = acBal + goldBalance + usdBalance + eurBalance;
+				totalPrice.Text = "Total Balance: " + totalBalance.ToString() + " ₺";
+
+				sqlConnection.Close();
+
+				buyID.Text = enterIDTB.Text;
+				sellID.Text = enterIDTB.Text;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
+
+		private void transactionsButton_Click(object sender, EventArgs e)
+		{
+			Transactions transactions = new Transactions();
+			transactions.Show();
+			this.Hide();
+		}
+
+		private void accountsButton_Click(object sender, EventArgs e)
+		{
+			AccountsPage accounts = new AccountsPage();
+			accounts.Show();
+			this.Hide();
+		}
+
+		private void backButton_Click(object sender, EventArgs e)
+		{
+			MainMenu mainMenu = new MainMenu();
+			mainMenu.Show();
+			this.Hide();
+		}
+
+		private void closeButton_Click(object sender, EventArgs e)
+		{
+			Application.Exit();
+		}
+
+		private void buyButton_Click(object sender, EventArgs e)
+		{
+			int accountId = Convert.ToInt32(enterIDTB.Text);
+
+			double purchase = string.IsNullOrEmpty(buyPriceTB.Text) ? 0 : Convert.ToDouble(buyPriceTB.Text);
+
+			bool isBuy = true;
+
+			UpdateBalances(accountId, purchase, isBuy);
+		}
+
+		private void UpdateBalances(int accountId, double purchase, bool isBuy)
+		{
+			try
+			{
+				sqlConnection.Open();
+
+				string accountQuery = "SELECT ACBal FROM AccountTbl WHERE ACNum = @ACNum";
+				SqlCommand accountCommand = new SqlCommand(accountQuery, sqlConnection);
+				accountCommand.Parameters.AddWithValue("@ACNum", accountId);
+
+				object accountResult = accountCommand.ExecuteScalar();
+				double currentAccountBalance = accountResult != null ? Convert.ToDouble(accountResult) : 0;
+
+				if (isBuy)
+				{
+
+					double totalPurchaseAmount = purchase;
+
+					if (currentAccountBalance >= totalPurchaseAmount)
+					{
+						string updateAccountQuery = "UPDATE AccountTbl SET ACBal = ACBal - @TotalPurchaseAmount WHERE ACNum = @ACNum";
+						SqlCommand updateAccountCommand = new SqlCommand(updateAccountQuery, sqlConnection);
+						updateAccountCommand.Parameters.AddWithValue("@TotalPurchaseAmount", totalPurchaseAmount);
+						updateAccountCommand.Parameters.AddWithValue("@ACNum", accountId);
+						updateAccountCommand.ExecuteNonQuery();
+
+						if (buyCB.SelectedIndex == 0) // Gold
+						{
+							string updateInvestmentQuery = "UPDATE InvestmentAccountsTbl SET IGold = IGold + @Purchase WHERE ACNum = @ACNum";
+							SqlCommand updateInvestmentCommand = new SqlCommand(updateInvestmentQuery, sqlConnection);
+							updateInvestmentCommand.Parameters.AddWithValue("@Purchase", purchase);
+							updateInvestmentCommand.Parameters.AddWithValue("@ACNum", accountId);
+							updateInvestmentCommand.ExecuteNonQuery();
+						}
+						else if (buyCB.SelectedIndex == 1) // USD
+						{
+							string updateInvestmentQuery = "UPDATE InvestmentAccountsTbl SET IUSD = IUSD + @Purchase WHERE ACNum = @ACNum";
+							SqlCommand updateInvestmentCommand = new SqlCommand(updateInvestmentQuery, sqlConnection);
+							updateInvestmentCommand.Parameters.AddWithValue("@Purchase", purchase);
+							updateInvestmentCommand.Parameters.AddWithValue("@ACNum", accountId);
+							updateInvestmentCommand.ExecuteNonQuery();
+						}
+						else if (buyCB.SelectedIndex == 2) // Euro
+						{
+							string updateInvestmentQuery = "UPDATE InvestmentAccountsTbl SET IEUR = IEUR + @Purchase WHERE ACNum = @ACNum";
+							SqlCommand updateInvestmentCommand = new SqlCommand(updateInvestmentQuery, sqlConnection);
+							updateInvestmentCommand.Parameters.AddWithValue("@Purchase", purchase);
+							updateInvestmentCommand.Parameters.AddWithValue("@ACNum", accountId);
+							updateInvestmentCommand.ExecuteNonQuery();
+						}
+
+
+						MessageBox.Show("Balances Updated Successfully");
+					}
+					else
+					{
+						MessageBox.Show("Insufficient balance to make the purchase.");
+					}
+				}
+				else
+				{
+					// Selling logic
+					double totalSaleAmount = purchase;
+					bool hasSufficientCurrency = false;
+
+					// Check if there's enough currency to sell
+					if (buyCB.SelectedIndex == 0) // Gold
+					{
+						string checkGoldQuery = "SELECT IGold FROM InvestmentAccountsTbl WHERE ACNum = @ACNum";
+						SqlCommand checkGoldCommand = new SqlCommand(checkGoldQuery, sqlConnection);
+						checkGoldCommand.Parameters.AddWithValue("@ACNum", accountId);
+						double currentGoldBalance = Convert.ToDouble(checkGoldCommand.ExecuteScalar());
+
+						if (currentGoldBalance >= totalSaleAmount)
+						{
+							hasSufficientCurrency = true;
+							string updateInvestmentQuery = "UPDATE InvestmentAccountsTbl SET IGold = IGold - @Sale WHERE ACNum = @ACNum";
+							SqlCommand updateInvestmentCommand = new SqlCommand(updateInvestmentQuery, sqlConnection);
+							updateInvestmentCommand.Parameters.AddWithValue("@Sale", totalSaleAmount);
+							updateInvestmentCommand.Parameters.AddWithValue("@ACNum", accountId);
+							updateInvestmentCommand.ExecuteNonQuery();
+						}
+					}
+					else if (buyCB.SelectedIndex == 1) // USD
+					{
+						string checkUSDQuery = "SELECT IUSD FROM InvestmentAccountsTbl WHERE ACNum = @ACNum";
+						SqlCommand checkUSDCommand = new SqlCommand(checkUSDQuery, sqlConnection);
+						checkUSDCommand.Parameters.AddWithValue("@ACNum", accountId);
+						double currentUSDBalance = Convert.ToDouble(checkUSDCommand.ExecuteScalar());
+
+						if (currentUSDBalance >= totalSaleAmount)
+						{
+							hasSufficientCurrency = true;
+							string updateInvestmentQuery = "UPDATE InvestmentAccountsTbl SET IUSD = IUSD - @Sale WHERE ACNum = @ACNum";
+							SqlCommand updateInvestmentCommand = new SqlCommand(updateInvestmentQuery, sqlConnection);
+							updateInvestmentCommand.Parameters.AddWithValue("@Sale", totalSaleAmount);
+							updateInvestmentCommand.Parameters.AddWithValue("@ACNum", accountId);
+							updateInvestmentCommand.ExecuteNonQuery();
+						}
+					}
+					else if (buyCB.SelectedIndex == 2) // Euro
+					{
+						string checkEURQuery = "SELECT IEUR FROM InvestmentAccountsTbl WHERE ACNum = @ACNum";
+						SqlCommand checkEURCommand = new SqlCommand(checkEURQuery, sqlConnection);
+						checkEURCommand.Parameters.AddWithValue("@ACNum", accountId);
+						double currentEURBalance = Convert.ToDouble(checkEURCommand.ExecuteScalar());
+
+						if (currentEURBalance >= totalSaleAmount)
+						{
+							hasSufficientCurrency = true;
+							string updateInvestmentQuery = "UPDATE InvestmentAccountsTbl SET IEUR = IEUR - @Sale WHERE ACNum = @ACNum";
+							SqlCommand updateInvestmentCommand = new SqlCommand(updateInvestmentQuery, sqlConnection);
+							updateInvestmentCommand.Parameters.AddWithValue("@Sale", totalSaleAmount);
+							updateInvestmentCommand.Parameters.AddWithValue("@ACNum", accountId);
+							updateInvestmentCommand.ExecuteNonQuery();
+						}
+					}
+
+					// Update account balance if there was sufficient currency to sell
+					if (hasSufficientCurrency)
+					{
+						string updateAccountQuery = "UPDATE AccountTbl SET ACBal = ACBal + @TotalSaleAmount WHERE ACNum = @ACNum";
+						SqlCommand updateAccountCommand = new SqlCommand(updateAccountQuery, sqlConnection);
+						updateAccountCommand.Parameters.AddWithValue("@TotalSaleAmount", totalSaleAmount);
+						updateAccountCommand.Parameters.AddWithValue("@ACNum", accountId);
+						updateAccountCommand.ExecuteNonQuery();
+
+						MessageBox.Show("Balances Updated Successfully");
+					}
+					else
+					{
+						MessageBox.Show("Insufficient currency to make the sale.");
+					}
+				}
+
+				sqlConnection.Close();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
+
+		private void sellButton_Click(object sender, EventArgs e)
+		{
+			int accountId = Convert.ToInt32(enterIDTB.Text);
+
+			double sell = string.IsNullOrEmpty(sellPriceTB.Text) ? 0 : Convert.ToDouble(sellPriceTB.Text);
+
+			bool isBuy = false;
+
+			UpdateBalances(accountId, sell, isBuy);
+		}
 	}
 }

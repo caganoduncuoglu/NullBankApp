@@ -123,6 +123,26 @@ namespace NullBankApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Null_Bank__12__removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("Null_Bank__12_-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Null_Bank__13__removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("Null_Bank__13_-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Null_Bank__2__removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("Null_Bank__2_-removebg-preview", resourceCulture);

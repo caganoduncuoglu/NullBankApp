@@ -17,7 +17,7 @@ namespace NullBankApp
 			InitializeComponent();
 			updateUsername();
 		}
-	
+
 		private void updateUsername()
 		{
 			userNameLabel.Text = UserSession.CurrentUserName;
@@ -46,6 +46,13 @@ namespace NullBankApp
 		private void button4_Click(object sender, EventArgs e)
 		{
 			Application.Exit();
+		}
+
+		private void investmentsBtn_Click(object sender, EventArgs e)
+		{
+			Investments investments = new Investments();
+			investments.Show();
+			this.Hide();
 		}
 	}
 }
