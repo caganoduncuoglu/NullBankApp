@@ -210,7 +210,7 @@
 			dateLbl.BackColor = Color.Transparent;
 			dateLbl.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			dateLbl.ForeColor = SystemColors.MenuHighlight;
-			dateLbl.Location = new Point(658, 46);
+			dateLbl.Location = new Point(642, 46);
 			dateLbl.Name = "dateLbl";
 			dateLbl.Size = new Size(47, 22);
 			dateLbl.TabIndex = 73;

@@ -51,7 +51,7 @@ namespace NullBankApp
 				{
 					price = unit * Decimal.Parse(usdBuy.Text);
 				}
-				else if (buyCB.SelectedIndex == 1) // Euro
+				else if (buyCB.SelectedIndex == 2) // Euro
 				{
 					price = unit * Decimal.Parse(euroBuy.Text);
 				}
@@ -74,7 +74,7 @@ namespace NullBankApp
 				{
 					price = unit * Decimal.Parse(usdSell.Text);
 				}
-				else if (sellCB.SelectedIndex == 1) // Euro
+				else if (sellCB.SelectedIndex == 2) // Euro
 				{
 					price = unit * Decimal.Parse(euroSell.Text);
 				}
@@ -97,7 +97,7 @@ namespace NullBankApp
 				{
 					unit = price / Decimal.Parse(usdBuy.Text);
 				}
-				else if (buyCB.SelectedIndex == 1) // Euro
+				else if (buyCB.SelectedIndex == 2) // Euro
 				{
 					unit = price / Decimal.Parse(euroBuy.Text);
 				}
@@ -120,7 +120,7 @@ namespace NullBankApp
 				{
 					unit = price / Decimal.Parse(usdSell.Text);
 				}
-				else if (sellCB.SelectedIndex == 1) // Euro
+				else if (sellCB.SelectedIndex == 2) // Euro
 				{
 					unit = price / Decimal.Parse(euroSell.Text);
 				}
@@ -199,7 +199,7 @@ namespace NullBankApp
 
 				// Calculate the total balance
 				double totalBalance = acBal + goldBalance + usdBalance + eurBalance;
-				totalPrice.Text = "Total Balance: " + totalBalance.ToString() + " ₺";
+				totalPrice.Text = Math.Round(totalBalance,2).ToString() + " ₺";
 
 				sqlConnection.Close();
 

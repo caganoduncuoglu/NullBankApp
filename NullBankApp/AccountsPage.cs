@@ -139,7 +139,7 @@ namespace NullBankApp
 				try
 				{
 					sqlConnection.Open();
-					SqlCommand cmd = new SqlCommand("Update AccountTbl set ACName=@AN,ACPhone=@AP,ACAddress=@AA,ACType=@AE,ACCountry=@AC,ACIncome=@AI where ACNum=@ACKey", sqlConnection);
+					SqlCommand cmd = new SqlCommand("Update AccountTbl set ACName=@AN,ACPhone=@AP,ACAddress=@AA,ACType=@AT,ACCountry=@AC,ACIncome=@AI where ACNum=@ACKey", sqlConnection);
 					cmd.Parameters.AddWithValue("@AN", acNameTB.Text);
 					cmd.Parameters.AddWithValue("@AP", acPhoneTB.Text);
 					cmd.Parameters.AddWithValue("@AA", acAddressTB.Text);
@@ -171,6 +171,12 @@ namespace NullBankApp
 				try
 				{
 					sqlConnection.Open();
+					if (typeCB.SelectedIndex == 2)
+					{
+						SqlCommand investmentCmd = new SqlCommand("delete from InvestmentAccountsTbl where ACNum=@ACKey", sqlConnection);
+						investmentCmd.Parameters.AddWithValue("@ACKey", Key);
+						investmentCmd.ExecuteNonQuery();
+					}
 					SqlCommand cmd = new SqlCommand("delete from AccountTbl where ACNum=@ACKey", sqlConnection);
 					cmd.Parameters.AddWithValue("@ACKey", Key);
 					cmd.ExecuteNonQuery();
@@ -191,9 +197,9 @@ namespace NullBankApp
 			acNameTB.Text = AccountsDGV.SelectedRows[0].Cells[1].Value.ToString();
 			acPhoneTB.Text = AccountsDGV.SelectedRows[0].Cells[2].Value.ToString();
 			acAddressTB.Text = AccountsDGV.SelectedRows[0].Cells[3].Value.ToString();
-			typeCB.SelectedItem = AccountsDGV.SelectedRows[0].Cells[4].Value.ToString();
-			countryCB.SelectedItem = AccountsDGV.SelectedRows[0].Cells[5].Value.ToString();
-			acIncomeTB.Text = AccountsDGV.SelectedRows[0].Cells[7].Value.ToString();
+			typeCB.SelectedItem = AccountsDGV.SelectedRows[0].Cells[7].Value.ToString();
+			countryCB.SelectedItem = AccountsDGV.SelectedRows[0].Cells[4].Value.ToString();
+			acIncomeTB.Text = AccountsDGV.SelectedRows[0].Cells[6].Value.ToString();
 			if (acNameTB.Text == "")
 			{
 				Key = 0;
